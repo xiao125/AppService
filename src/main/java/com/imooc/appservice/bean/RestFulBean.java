@@ -1,6 +1,6 @@
 package com.imooc.appservice.bean;
 
-public class FestFulBean<T> {
+public class RestFulBean<T> {
 
     private int status;
     private T data;

@@ -6,7 +6,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context-4.2.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+       http://www.springframework.org/schema/context/spring-context-4.2.xsd
+       http://www.springframework.org/schema/cache
+       http://www.springframework.org/schema/cache/spring-cache.xsd">
 
 
     <!-- 自动扫描的包名 Controller -->
@@ -35,6 +37,14 @@
     </bean>
 
 
+    <!--配置Service-->
+    <bean id="loginService" class="com.imooc.appservice.service.UserService" />
+
+    <bean  id="userDaoImpl" class="com.imooc.appservice.dao.UserDaoImpl">
+
+        <property name="sessionFactory" ref="sessionFactory"></property>
+
+    </bean>
 
 
 

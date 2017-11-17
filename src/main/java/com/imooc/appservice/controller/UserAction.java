@@ -1,25 +1,48 @@
 package com.imooc.appservice.controller;
 
-import com.imooc.appservice.bean.FestFulBean;
+import com.imooc.appservice.bean.RestFulBean;
+import com.imooc.appservice.bean.UserBean;
+import com.imooc.appservice.service.UserService;
+import com.imooc.appservice.util.RestFulUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
 public class UserAction {
 
-    @ResponseBody
-    public FestFulBean<String> loginByPwd(@RequestParam String username,@RequestParam String password){
+    @Autowired
+    private UserService userService;
 
-        FestFulBean<String> restful = new FestFulBean<String>();
-        restful.setData("hello"+username+"welcom to my!");
-        restful.setStatus(0);
-        restful.setMsg("成功");
-        return restful;
+
+    /**
+     * 登录
+     * @param phone
+     * @param password
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/loginbypwd.do",method = RequestMethod.POST)
+    public RestFulBean<UserBean> loginByPwd(@RequestParam String phone, @RequestParam String password){
+
+       System.out.println("phone:"+phone);
+        return userService.login(phone,password);
     }
 
+    /**
+     * 注册
+     * @param userBean
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/register.do",method = RequestMethod.PUT)
+    public RestFulBean<UserBean> register(@RequestBody UserBean userBean){
+
+        System.out.println("phone:"+userBean.getPhone());
+        return userService.registorServer(userBean);
+
+    }
 
 
 }

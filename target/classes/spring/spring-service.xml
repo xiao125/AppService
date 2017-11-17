@@ -12,5 +12,14 @@
     <!--扫描service包-->
     <context:component-scan base-package="com.imooc.appservice.service"/>
 
+    <!--配置事物管理器-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!-- 事务采用全注解方式 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
 
 </beans>
